@@ -1,10 +1,10 @@
 services:
 
   recipes_api:
-    # when build - executes Dockerfile.api
+    # when build - executes Dockerfile
     build:
       context: .
-      dockerfile: Dockerfile.api
+      dockerfile: Dockerfile
       args:
         - DEV=true
     ports:

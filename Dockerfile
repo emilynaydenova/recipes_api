@@ -40,3 +40,9 @@ USER django-user
 ## Start the application using Gunicorn
 #CMD ["gunicorn", "--bind", "0.0.0.0:8000", "myproject.wsgi:application"]
 #
+
+# To force Docker to pull fresh images:
+#  docker system prune -a
+#  docker logout
+#  docker login
+#  docker compose up --build
