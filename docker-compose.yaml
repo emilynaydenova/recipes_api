@@ -1,0 +1,29 @@
+services:
+
+  recipes_api:
+    # when build - executes Dockerfile.api
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+      args:
+        - DEV=true
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+  
+
+########################################################################
+# Building image
+# docker-compose build
+
+# Linting - Install flake8, .flake8 in root directory, to exclude some files linting
+#  docker-compose run --rm recipes_api sh -c "flake8"
+
+# Testing
+#docker-compose run --rm recipes_api sh -c "python manage.py test"
+
+# starting services - test on http://127.0.0.1:8000/
+# docker-compose up
