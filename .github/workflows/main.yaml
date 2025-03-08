@@ -27,7 +27,7 @@ jobs:
 #        run: docker compose run --rm recipes_api sh -c "python manage.py test && flake8"
 
       - name: Test
-        run: docker compose run --rm recipes_api sh -c "python manage.py test"
+        run: docker compose run --rm recipes_api sh -c "python manage.py wait_for_db && python manage.py test"
 
       - name: Linting
         run: docker compose run --rm recipes_api sh -c "flake8"

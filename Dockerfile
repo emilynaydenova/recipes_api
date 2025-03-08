@@ -16,12 +16,21 @@ WORKDIR /app
 COPY requirements.txt .
 COPY requirements.dev.txt .
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libpq-dev gcc && \
+    rm -rf /var/lib/apt/lists/*
+
+
+
 # Install Python dependencies
 RUN pip install -r requirements.txt && \
     if [ "$DEV" = "true" ];  \
     then pip install -r requirements.dev.txt; \
     fi && \
     useradd -m django-user
+
+
 
 # fi is used to close an if statement in shell scripting (Bash)
 # All from the current directory Must be copied into
@@ -31,7 +40,7 @@ COPY . .
 # Django port 8000 available to the world outside this container
 # the EXPOSE instruction is mainly informational
 EXPOSE 8000
-
+# Set the user to use when running the application
 USER django-user
 #
 ## Run migrations and collect static files (optional)

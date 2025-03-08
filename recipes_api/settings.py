@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -75,12 +76,16 @@ WSGI_APPLICATION = 'recipes_api.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    # set in docker-compose.yaml
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get('DB_NAME'),
+        "USER": os.environ.get('DB_USER'),
+        "PASSWORD": os.environ.get('DB_PASS'),
+        "HOST":os.environ.get('DB_HOST'),
+        "PORT": "5432",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
