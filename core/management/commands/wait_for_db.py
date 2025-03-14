@@ -26,4 +26,5 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS('Database available!'))
 
-# docker compose run --rm recipes_api sh -c "python manage.py wait_for_db && flake8"
+# docker compose run --rm recipes_api sh -c
+#    "python manage.py wait_for_db && flake8"
