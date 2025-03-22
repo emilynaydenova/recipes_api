@@ -1,14 +1,11 @@
-from django.db import models # noqa
-
-# Create your models here.
 """
 Database models.
 """
-import uuid
-import os
-
-from django.conf import settings
-from django.db import models
+# import uuid
+# import os
+#
+# from django.conf import settings
+from django.db import models # noqa
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,

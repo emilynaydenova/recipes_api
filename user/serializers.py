@@ -19,11 +19,13 @@ class UserSerializer(serializers.ModelSerializer):
         # specify additional settings for specific fields
         # write_only: don't show password in response
         extra_kwargs = {'password': {'write_only': True, 'min_length': 5}}
-# Register
+
+    # Register
     def create(self, validated_data):
         """Create and return a user with encrypted password."""
         return get_user_model().objects.create_user(**validated_data)
-#
+
+    # Update
     def update(self, instance, validated_data):
         """Update and return user."""
         password = validated_data.pop('password', None)

@@ -7,14 +7,14 @@ Tests for models.
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
-from core.models import CustomUser
-
 #
 # def create_user(email='user@example.com', password='testpass123'):
 #     """Create a return a new user."""
 #     return get_user_model().objects.create_user(email, password)
 
 UserModel = get_user_model()
+
+
 class ModelTests(TestCase):
     """Test models."""
 
