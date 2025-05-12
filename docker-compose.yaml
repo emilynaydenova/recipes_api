@@ -10,6 +10,7 @@ services:
       - "8000:8000"
     volumes:
       - ./:/app
+      - dev-static-data:/vol/web
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
@@ -20,7 +21,7 @@ services:
       - DB_NAME=devdb
       - DB_USER=devuser
       - DB_PASS=changeme
-      - DEBUG=1
+      - DEBUG=True
     depends_on:
       - db
 
@@ -55,9 +56,13 @@ volumes:
 
 # starting services - test on http://127.0.0.1:8000/
 # docker-compose up
-
-# docker-compose run --rm recipes_api sh -c "python manage.py migrate
+# docker-compose run --rm recipes_api sh -c "python manage.py migrate"docker-compose run --rm recipes_api sh -c "python manage.py makemigrations"
+# docker-compose run --rm recipes_api sh -c "python manage.py migrate"
 
 # docker-compose run --rm recipes_api sh -c "python manage.py createsuperuser"
 
 # docker-compose run --rm recipes_api sh -c "python manage.py startapp user"
+# docker-compose run --rm recipes_api sh -c "python manage.py startapp recipe"
+#  docker-compose run --rm recipes_api sh -c "python -m pip install --upgrade pip"
+# docker-compose run --rm recipes_api sh -c "python -m pip install Pillow"
+# docker-compose run --rm recipes_api sh -c "python -m pip freeze > requirements.txt"
